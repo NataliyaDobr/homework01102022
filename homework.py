@@ -59,3 +59,29 @@ def count_it(sequence):
 strr = new_str()
 print(strr)
 print(count_it(strr))
+
+# 4.Написать функцию thesaurus_adv(), принимающую в качестве аргументов строки в формате «Имя Фамилия» и возвращающую словарь, 
+# в котором ключи — первые буквы фамилий, а значения — словари, реализованные по схеме предыдущего задания и содержащие записи, 
+# в которых фамилия начинается с соответствующей буквы. 
+# Например: >>> thesaurus_adv("Иван Сергеев", "Инна Серова", "Петр Алексеев", "Илья Иванов", "Анна Савельева") 
+# { "А": { "П": ["Петр Алексеев"] }, 
+#   "И": { "И": ["Илья Иванов"] }, 
+#   "С": { "И": ["Иван Сергеев", "Инна Серова"], "А": ["Анна Савельева"] } }
+
+def thesaurus(*args):
+    some_dict = {}
+    #some_more_dict = {}
+    for i in args:
+       surname_letter = i.split()[1][0]
+       name_letter = i[0]
+       if surname_letter in some_dict:
+        if name_letter in some_more_dict:
+            some_more_dict[name_letter].append(i)
+        else:
+            some_more_dict[name_letter] = [i]
+       else:
+        some_more_dict = {name_letter: [i]}
+        some_dict[surname_letter] = some_more_dict
+    print(some_dict)
+
+thesaurus("Иван Сергеев", "Инна Серова", "Петр Алексеев", "Илья Иванов", "Анна Савельева")
